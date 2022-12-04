@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		5B8EC963293BC86E00B47FBB /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8EC962293BC86E00B47FBB /* MainTabBarVC.swift */; };
+		5B8EC967293C4B8800B47FBB /* AppSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8EC966293C4B8800B47FBB /* AppSearchVC.swift */; };
 		5BBB10D32939255300E94B21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB10D22939255300E94B21 /* AppDelegate.swift */; };
 		5BBB10DC2939255400E94B21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB10DB2939255400E94B21 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5B8EC962293BC86E00B47FBB /* MainTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarVC.swift; sourceTree = "<group>"; };
+		5B8EC966293C4B8800B47FBB /* AppSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchVC.swift; sourceTree = "<group>"; };
 		5BBB10CF2939255300E94B21 /* AppStoreClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBB10D22939255300E94B21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BBB10DB2939255400E94B21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -41,6 +43,15 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		5B8EC965293C4B7500B47FBB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5B8EC962293BC86E00B47FBB /* MainTabBarVC.swift */,
+				5B8EC966293C4B8800B47FBB /* AppSearchVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		5BBB10C62939255300E94B21 = {
 			isa = PBXGroup;
 			children = (
@@ -60,7 +71,7 @@
 		5BBB10D12939255300E94B21 /* AppStoreClone */ = {
 			isa = PBXGroup;
 			children = (
-				5B8EC962293BC86E00B47FBB /* MainTabBarVC.swift */,
+				5B8EC965293C4B7500B47FBB /* Controller */,
 				5B8EC964293BC90000B47FBB /* Support */,
 			);
 			path = AppStoreClone;
@@ -136,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B8EC963293BC86E00B47FBB /* MainTabBarVC.swift in Sources */,
+				5B8EC967293C4B8800B47FBB /* AppSearchVC.swift in Sources */,
 				5BBB10D32939255300E94B21 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
