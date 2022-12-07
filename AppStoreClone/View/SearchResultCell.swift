@@ -12,7 +12,7 @@ class SearchResultCell: UICollectionViewCell {
 	static let reuseId = String(describing: SearchResultCell.self)
 	
 	
-	let appIcon: UIImageView = {
+	let appIconImageView: UIImageView = {
 		let imageView = UIImageView()
 		imageView.backgroundColor = .red
 		imageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
@@ -46,6 +46,7 @@ class SearchResultCell: UICollectionViewCell {
 		button.titleLabel?.font = .boldSystemFont(ofSize: 14)
 		button.backgroundColor = UIColor(white: 0.95, alpha: 1)
 		button.widthAnchor.constraint(equalToConstant: 80).isActive = true
+		button.heightAnchor.constraint(equalToConstant: 32).isActive = true
 		button.layer.cornerRadius = 12
 		return button
 	}()
@@ -59,20 +60,13 @@ class SearchResultCell: UICollectionViewCell {
 		let labelsStackView = UIStackView(arrangedSubviews: [nameLabel, categoryLabel, ratingsLabel])
 		labelsStackView.axis = .vertical
 		
-		let stackView = UIStackView(arrangedSubviews: [appIcon, labelsStackView, getButton])
+		let stackView = UIStackView(arrangedSubviews: [appIconImageView, labelsStackView, getButton])
 		stackView.spacing = 12
 		//TODO: - learn more about alignment property of the stack view
 		stackView.alignment = .center
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(stackView)
-		
-		NSLayoutConstraint.activate([
-			stackView.topAnchor.constraint(equalTo: self.topAnchor),
-			stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-			stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-			stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12)
-		
-		])
+		stackView.fillSuperview(padding: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
 	}
 	
 	
