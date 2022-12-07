@@ -23,6 +23,33 @@ class AppSearchVC: UICollectionViewController {
 		
 		collectionView.backgroundColor = .systemBackground
 		collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: SearchResultCell.reuseId)
+		
+		fetchITunesApps()
+	}
+	
+	
+	fileprivate func fetchITunesApps() {
+		let stringUrl = "https://itunes.apple.com/search?term=instagram&entity=software"
+		guard let url = URL(string: stringUrl) else { return }
+		
+		URLSession.shared.dataTask(with: url) { data, response, error in
+			// error case
+			if let error = error  {
+				print("failed to fetch app serch", error)
+				return
+			}
+			
+			// success
+			guard let data = data else { return }
+			
+			do {
+				let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
+				searchResult.results.forEach { print($0.trackName) }
+			} catch {
+				print("failed to decode", error)
+			}
+			
+		}.resume()
 	}
 	
 	
