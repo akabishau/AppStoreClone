@@ -32,31 +32,17 @@ class AppSearchVC: UICollectionViewController {
 	
 	
 	fileprivate func fetchITunesApps() {
-		let stringUrl = "https://itunes.apple.com/search?term=instagram&entity=software"
-		guard let url = URL(string: stringUrl) else { return }
-		
-		URLSession.shared.dataTask(with: url) { data, response, error in
-			// error case
-			if let error = error  {
-				print("failed to fetch app serch", error)
+		Service.shared.fetchApps { results, error in
+			if let error = error {
+				print("failed to fetch apps:", error)
 				return
 			}
 			
-			// success
-			guard let data = data else { return }
-			
-			do {
-				let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-				self.appResults = searchResult.results
-				DispatchQueue.main.async {
-					self.collectionView.reloadData()
-				}
-				
-			} catch {
-				print("failed to decode", error)
+			self.appResults = results
+			DispatchQueue.main.async {
+				self.collectionView.reloadData()
 			}
-			
-		}.resume()
+		}
 	}
 	
 	
