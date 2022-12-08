@@ -15,9 +15,9 @@ class MainTabBarVC: UITabBarController {
 		view.backgroundColor = .systemBackground
 
 		viewControllers = [
+			createNavController(for: AppsVC(), title: "Apps", imageName: "house"),
 			createNavController(for: AppSearchVC(), title: "Search", imageName: "magnifyingglass"),
 			createNavController(for: UIViewController(), title: "Today", imageName: "doc.text.image"),
-			createNavController(for: UIViewController(), title: "Apps", imageName: "house")
 		]
 	}
 	

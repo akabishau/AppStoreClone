@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class AppSearchVC: UICollectionViewController {
+class AppSearchVC: BaseListVC {
 	
 	
 	fileprivate var appResults = [Result]()
@@ -25,13 +25,7 @@ class AppSearchVC: UICollectionViewController {
 		label.font = UIFont.boldSystemFont(ofSize: 20)
 		return label
 	}()
-	
-	init() {
-		super.init(collectionViewLayout: UICollectionViewFlowLayout())
-	}
-	
-	required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-	
+		
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
