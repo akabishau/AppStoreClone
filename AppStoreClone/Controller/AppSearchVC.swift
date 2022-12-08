@@ -10,6 +10,9 @@ import UIKit
 class AppSearchVC: UICollectionViewController {
 	
 	
+	fileprivate var appResults = [Result]()
+	
+	
 	init() {
 		super.init(collectionViewLayout: UICollectionViewFlowLayout())
 	}
@@ -44,7 +47,11 @@ class AppSearchVC: UICollectionViewController {
 			
 			do {
 				let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-				searchResult.results.forEach { print($0.trackName) }
+				self.appResults = searchResult.results
+				DispatchQueue.main.async {
+					self.collectionView.reloadData()
+				}
+				
 			} catch {
 				print("failed to decode", error)
 			}
@@ -55,13 +62,18 @@ class AppSearchVC: UICollectionViewController {
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCell.reuseId, for: indexPath)
+		let appInfo = appResults[indexPath.item]
+		
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCell.reuseId, for: indexPath) as! SearchResultCell
+		cell.nameLabel.text = appInfo.trackName
+		cell.categoryLabel.text = appInfo.primaryGenreName
+		cell.ratingsLabel.text = "Rating: \(appInfo.averageUserRating ?? 0)"
 		return cell
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 5
+		return appResults.count
 	}
 	
 }
