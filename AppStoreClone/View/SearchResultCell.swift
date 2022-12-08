@@ -19,15 +19,18 @@ class SearchResultCell: UICollectionViewCell {
 			ratingsLabel.text = "Rating: \(appInfo.averageUserRating ?? 0)"
 			appIconImageView.sd_setImage(with: URL(string: appInfo.artworkUrl100))
 			screenshot1ImageView.sd_setImage(with: URL(string: appInfo.screenshotUrls[0]))
-			screenshot2ImageView.sd_setImage(with: URL(string: appInfo.screenshotUrls[1]))
-			screenshot3ImageView.sd_setImage(with: URL(string: appInfo.screenshotUrls[2]))
+			if appInfo.screenshotUrls.count > 2 {
+				screenshot2ImageView.sd_setImage(with: URL(string: appInfo.screenshotUrls[1]))
+			}
+			if appInfo.screenshotUrls.count > 3 {
+				screenshot3ImageView.sd_setImage(with: URL(string: appInfo.screenshotUrls[2]))
+			}
 		}
 	}
 	
 	
 	let appIconImageView: UIImageView = {
 		let imageView = UIImageView()
-		imageView.backgroundColor = .red
 		imageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
 		imageView.heightAnchor.constraint(equalToConstant: 64).isActive = true
 		imageView.layer.cornerRadius = 12
