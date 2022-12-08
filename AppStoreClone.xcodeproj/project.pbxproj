@@ -13,6 +13,7 @@
 		5B8EC96D29403E8A00B47FBB /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8EC96C29403E8A00B47FBB /* UIView+Layout.swift */; };
 		5B8EC97029413C7F00B47FBB /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8EC96F29413C7F00B47FBB /* SearchResult.swift */; };
 		5B8EC9732941842D00B47FBB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8EC9722941842D00B47FBB /* Service.swift */; };
+		5B8EC976294190C100B47FBB /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5B8EC975294190C100B47FBB /* SDWebImage */; };
 		5BBB10D32939255300E94B21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB10D22939255300E94B21 /* AppDelegate.swift */; };
 		5BBB10DC2939255400E94B21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB10DB2939255400E94B21 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B8EC976294190C100B47FBB /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +139,9 @@
 			dependencies = (
 			);
 			name = AppStoreClone;
+			packageProductDependencies = (
+				5B8EC975294190C100B47FBB /* SDWebImage */,
+			);
 			productName = AppStoreClone;
 			productReference = 5BBB10CF2939255300E94B21 /* AppStoreClone.app */;
 			productType = "com.apple.product-type.application";
@@ -165,6 +170,9 @@
 				Base,
 			);
 			mainGroup = 5BBB10C62939255300E94B21;
+			packageReferences = (
+				5B8EC974294190C100B47FBB /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 5BBB10D02939255300E94B21 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -399,6 +407,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5B8EC974294190C100B47FBB /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5B8EC975294190C100B47FBB /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B8EC974294190C100B47FBB /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5BBB10C72939255300E94B21 /* Project object */;
 }
