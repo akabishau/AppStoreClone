@@ -18,6 +18,7 @@
 		5B8EC97B2942A57000B47FBB /* BaseListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8EC97A2942A57000B47FBB /* BaseListVC.swift */; };
 		5B8EC97E2942A9E200B47FBB /* AppsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8EC97D2942A9E200B47FBB /* AppsGroupCell.swift */; };
 		5B8EC9822942ACD700B47FBB /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8EC9812942ACD700B47FBB /* UILabel+Ext.swift */; };
+		5B8EC9842942AED500B47FBB /* AppsHorizontalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8EC9832942AED500B47FBB /* AppsHorizontalVC.swift */; };
 		5BBB10D32939255300E94B21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB10D22939255300E94B21 /* AppDelegate.swift */; };
 		5BBB10DC2939255400E94B21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB10DB2939255400E94B21 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,7 @@
 		5B8EC97A2942A57000B47FBB /* BaseListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListVC.swift; sourceTree = "<group>"; };
 		5B8EC97D2942A9E200B47FBB /* AppsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsGroupCell.swift; sourceTree = "<group>"; };
 		5B8EC9812942ACD700B47FBB /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		5B8EC9832942AED500B47FBB /* AppsHorizontalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHorizontalVC.swift; sourceTree = "<group>"; };
 		5BBB10CF2939255300E94B21 /* AppStoreClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBB10D22939255300E94B21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BBB10DB2939255400E94B21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				5B8EC9782942A36B00B47FBB /* AppsVC.swift */,
+				5B8EC9832942AED500B47FBB /* AppsHorizontalVC.swift */,
 			);
 			path = Apps;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				5B8EC9822942ACD700B47FBB /* UILabel+Ext.swift in Sources */,
 				5B8EC9732941842D00B47FBB /* Service.swift in Sources */,
 				5B8EC97B2942A57000B47FBB /* BaseListVC.swift in Sources */,
+				5B8EC9842942AED500B47FBB /* AppsHorizontalVC.swift in Sources */,
 				5B8EC967293C4B8800B47FBB /* AppSearchVC.swift in Sources */,
 				5B8EC96A293E6E6400B47FBB /* SearchResultCell.swift in Sources */,
 				5B8EC9792942A36B00B47FBB /* AppsVC.swift in Sources */,

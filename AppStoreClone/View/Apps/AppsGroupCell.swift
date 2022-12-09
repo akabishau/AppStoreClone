@@ -12,6 +12,7 @@ class AppsGroupCell: UICollectionViewCell {
 	
 	static let reuseId = String(describing: AppsGroupCell.self)
 	
+	let horizontalController = AppsHorizontalVC()
 	
 	let titleLabel = UILabel(text: "App Section", font: .boldSystemFont(ofSize: 30))
 	
@@ -23,6 +24,10 @@ class AppsGroupCell: UICollectionViewCell {
 		
 		addSubview(titleLabel)
 		titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
+		
+		
+		addSubview(horizontalController.view)
+		horizontalController.view.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
 	}
 	
 	required init?(coder: NSCoder) {
