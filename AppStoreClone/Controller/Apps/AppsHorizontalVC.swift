@@ -9,7 +9,6 @@ import UIKit
 
 class AppsHorizontalVC: BaseListVC {
 	
-	let reuseId = "reuseId"
 	let sellLineSpacing: CGFloat = 10
 	let sectionVerticalPadding: CGFloat = 12
 	let sectionHorizontalPading: CGFloat = 16
@@ -18,8 +17,8 @@ class AppsHorizontalVC: BaseListVC {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		collectionView.backgroundColor = .systemPink
-		collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseId)
+		collectionView.backgroundColor = .systemBackground
+		collectionView.register(AppRowCell.self, forCellWithReuseIdentifier: AppRowCell.reuseId)
 		
 		if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
 			layout.scrollDirection = .horizontal
@@ -37,9 +36,7 @@ extension AppsHorizontalVC {
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath)
-		
-		cell.backgroundColor = .systemBlue
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppRowCell.reuseId, for: indexPath) as! AppRowCell
 		return cell
 	}
 }
