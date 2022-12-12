@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppsVC: BaseListVC {
+class AppsPageVC: BaseListVC {
 	
 	
 	override func viewDidLoad() {
@@ -16,11 +16,13 @@ class AppsVC: BaseListVC {
 		collectionView.backgroundColor = .systemYellow
 		collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: AppsGroupCell.reuseId)
 		
+		collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AppsPageHeader.reuseId)
 	}
 }
 
 
-extension AppsVC {
+// Delegate and Data Source methods
+extension AppsPageVC {
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return 4
@@ -31,10 +33,23 @@ extension AppsVC {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsGroupCell.reuseId, for: indexPath) as! AppsGroupCell
 		return cell
 	}
+	
+	override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AppsPageHeader.reuseId, for: indexPath) as! AppsPageHeader
+		return header
+	}
+	
+	
+//	 header size for
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+
+		return CGSize(width: view.frame.width, height: 300)
+	}
+	
 }
 
 
-extension AppsVC: UICollectionViewDelegateFlowLayout {
+extension AppsPageVC: UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
