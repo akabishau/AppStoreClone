@@ -17,6 +17,21 @@ class AppsPageVC: BaseListVC {
 		collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: AppsGroupCell.reuseId)
 		
 		collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AppsPageHeader.reuseId)
+		
+		
+		fetchData()
+	}
+	
+	
+	fileprivate func fetchData() {
+		print("fetching new json data ...")
+		Service.shared.fetchTopFreeApps { appGroups, error in
+			if let error = error {
+				print("error fetching top free apps:", error)
+			} else {
+				appGroups?.feed.results.forEach({ print($0.name) })
+			}
+		}
 	}
 }
 
