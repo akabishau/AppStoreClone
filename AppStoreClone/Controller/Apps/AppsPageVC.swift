@@ -10,6 +10,9 @@ import UIKit
 class AppsPageVC: BaseListVC {
 	
 	
+	var topFreeApps: AppGroup?
+	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -25,11 +28,14 @@ class AppsPageVC: BaseListVC {
 	
 	fileprivate func fetchData() {
 		print("fetching new json data ...")
-		Service.shared.fetchTopFreeApps { appGroups, error in
+		Service.shared.fetchTopFreeApps { appGroup, error in
 			if let error = error {
 				print("error fetching top free apps:", error)
 			} else {
-				appGroups?.feed.results.forEach({ print($0.name) })
+				self.topFreeApps = appGroup!
+				DispatchQueue.main.async {
+					self.collectionView.reloadData()
+				}
 			}
 		}
 	}
@@ -40,12 +46,15 @@ class AppsPageVC: BaseListVC {
 extension AppsPageVC {
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 4
+		return 1
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsGroupCell.reuseId, for: indexPath) as! AppsGroupCell
+		cell.titleLabel.text = topFreeApps?.feed.title
+		cell.horizontalController.appGroup = topFreeApps
+		cell.horizontalController.collectionView.reloadData() // is this the best way?
 		return cell
 	}
 	

@@ -21,7 +21,6 @@ class AppRowCell: UICollectionViewCell {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		backgroundColor = .systemTeal
 		setupViews()
 	}
 	

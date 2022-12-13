@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class AppsHorizontalVC: BaseListVC {
 	
@@ -13,11 +14,12 @@ class AppsHorizontalVC: BaseListVC {
 	let sectionVerticalPadding: CGFloat = 12
 	let sectionHorizontalPading: CGFloat = 16
 	
+	var appGroup: AppGroup?
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		collectionView.backgroundColor = .systemBackground
 		collectionView.register(AppRowCell.self, forCellWithReuseIdentifier: AppRowCell.reuseId)
 		
 		if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
@@ -30,13 +32,18 @@ class AppsHorizontalVC: BaseListVC {
 extension AppsHorizontalVC {
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 10
+		return appGroup?.feed.results.count ?? 0
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
+		let app = appGroup?.feed.results[indexPath.item]
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppRowCell.reuseId, for: indexPath) as! AppRowCell
+		
+		cell.nameLabel.text = app?.name
+		cell.companyLabel.text = app?.artistName
+		cell.imageView.sd_setImage(with: URL(string: app?.artworkUrl100 ?? ""))
 		return cell
 	}
 }
