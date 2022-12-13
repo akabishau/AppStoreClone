@@ -10,7 +10,7 @@ import UIKit
 class AppsPageVC: BaseListVC {
 	
 	
-	var topFreeApps: AppGroup?
+	var appGroups = [AppGroup]()
 	
 	
 	override func viewDidLoad() {
@@ -27,16 +27,52 @@ class AppsPageVC: BaseListVC {
 	
 	
 	fileprivate func fetchData() {
-		print("fetching new json data ...")
+		
+		var topFreeApps: AppGroup?
+		var topPaidApps: AppGroup?
+		
+		let dispatchGroup = DispatchGroup()
+		
+		dispatchGroup.enter()
 		Service.shared.fetchTopFreeApps { appGroup, error in
+			
+			dispatchGroup.leave()
 			if let error = error {
 				print("error fetching top free apps:", error)
 			} else {
-				self.topFreeApps = appGroup!
-				DispatchQueue.main.async {
-					self.collectionView.reloadData()
+				
+				if let appGroup = appGroup {
+					topFreeApps = appGroup
 				}
 			}
+		}
+
+		
+		dispatchGroup.enter()
+		Service.shared.fetchTopPaidApps { appGroup, error in
+			
+			dispatchGroup.leave()
+			if let error = error {
+				print("error fetching top paid apps:", error)
+			} else {
+				if let appGroup = appGroup {
+					topPaidApps = appGroup
+				}
+			}
+		}
+		
+		
+		dispatchGroup.notify(queue: .main) {
+			//TODO: Posibly refactor to adding groups to array directly after network call
+			if let group = topFreeApps {
+				self.appGroups.append(group)
+			}
+			
+			if let group = topPaidApps {
+				self.appGroups.append(group)
+			}
+			
+			self.collectionView.reloadData()
 		}
 	}
 }
@@ -46,15 +82,14 @@ class AppsPageVC: BaseListVC {
 extension AppsPageVC {
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 1
+		return appGroups.count
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsGroupCell.reuseId, for: indexPath) as! AppsGroupCell
-		cell.titleLabel.text = topFreeApps?.feed.title
-		cell.horizontalController.appGroup = topFreeApps
-		cell.horizontalController.collectionView.reloadData() // is this the best way?
+		let appGroup = appGroups[indexPath.item]
+		cell.titleLabel.text = appGroup.feed.title
+		cell.horizontalController.appGroup = appGroup
 		return cell
 	}
 	
