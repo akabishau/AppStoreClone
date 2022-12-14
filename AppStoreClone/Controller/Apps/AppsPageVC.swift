@@ -9,6 +9,14 @@ import UIKit
 
 class AppsPageVC: BaseListVC {
 	
+	let activityIndicatorView: UIActivityIndicatorView = {
+		let activityIndicator = UIActivityIndicatorView(style: .large)
+		activityIndicator.color = .black
+		activityIndicator.startAnimating()
+		activityIndicator.hidesWhenStopped = true
+		return activityIndicator
+	}()
+	
 	
 	var appGroups = [AppGroup]()
 	var socialApps = [SocialApp]()
@@ -21,6 +29,8 @@ class AppsPageVC: BaseListVC {
 		
 		collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AppsPageHeader.reuseId)
 		
+		view.addSubview(activityIndicatorView)
+		activityIndicatorView.fillSuperview()
 		
 		fetchData()
 	}
@@ -84,6 +94,8 @@ class AppsPageVC: BaseListVC {
 			if let group = topPaidApps {
 				self.appGroups.append(group)
 			}
+			
+			self.activityIndicatorView.stopAnimating()
 			
 			// rerenders all collection view methods
 			self.collectionView.reloadData()
