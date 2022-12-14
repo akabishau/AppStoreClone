@@ -12,7 +12,7 @@ class Service {
 	
 	static let shared = Service()
 	
-	
+	//TODO: - Convert to generics as well
 	func fetchApps(searchTerm: String, completion: @escaping ([Result], Error?) -> ()) {
 		print(#function)
 		let stringUrl = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
@@ -42,40 +42,26 @@ class Service {
 	
 	func fetchTopPaidApps(completion: @escaping (AppGroup?, Error?) -> Void) {
 		let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/50/apps.json"
-		fetchAppGroup(urlString: urlString, completion: completion)
+		fetchGenericJSONData(urlString: urlString, completion: completion)
 	}
 
 	
 	func fetchTopFreeApps(completion: @escaping (AppGroup?, Error?) -> Void) {
 		let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/50/apps.json"
-		fetchAppGroup(urlString: urlString, completion: completion)
-	}
-	
-	// helper function
-	func fetchAppGroup(urlString: String, completion: @escaping (AppGroup?, Error?) -> Void) {
-		
-		guard let url = URL(string: urlString) else { return }
-		
-		URLSession.shared.dataTask(with: url) { data, response, error in
-			
-			if let error = error {
-				completion(nil, error)
-				return
-			}
-			
-			do {
-				let appGroup = try JSONDecoder().decode(AppGroup.self, from: data!)
-				completion(appGroup, nil)
-			} catch {
-				completion(nil, error)
-			}
-		}.resume()
+		fetchGenericJSONData(urlString: urlString, completion: completion)
 	}
 	
 	
 	func fetchSocialApps(completion: @escaping ([SocialApp]?, Error?) -> Void) {
 		let urlString = "https://api.letsbuildthatapp.com/appstore/social"
+		fetchGenericJSONData(urlString: urlString, completion: completion)
+	}
+	
+	
+	func fetchGenericJSONData<T: Decodable>(urlString: String, completion: @escaping (T?, Error?) -> Void) {
+		
 		guard let url = URL(string: urlString) else { return }
+		
 		URLSession.shared.dataTask(with: url) { data, response, error in
 			if let error = error {
 				completion(nil, error)
@@ -83,12 +69,11 @@ class Service {
 			}
 			
 			do {
-				let result = try JSONDecoder().decode([SocialApp].self, from: data!)
+				let result = try JSONDecoder().decode(T.self, from: data!)
 				completion(result, nil)
 			} catch {
 				completion(nil, error)
 			}
 		}.resume()
-		
 	}
 }
