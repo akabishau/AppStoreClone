@@ -11,7 +11,7 @@ class AppsPageVC: BaseListVC {
 	
 	
 	var appGroups = [AppGroup]()
-	
+	var socialApps = [SocialApp]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,6 +30,7 @@ class AppsPageVC: BaseListVC {
 		
 		var topFreeApps: AppGroup?
 		var topPaidApps: AppGroup?
+//		var socialAppGroup: [SocialApp]?
 		
 		let dispatchGroup = DispatchGroup()
 		
@@ -61,6 +62,18 @@ class AppsPageVC: BaseListVC {
 			}
 		}
 		
+		dispatchGroup.enter()
+		Service.shared.fetchSocialApps { result, error in
+			dispatchGroup.leave()
+			if let error = error {
+				print("error fetching social apps", error)
+			} else {
+				if let apps = result {
+					self.socialApps = apps
+				}
+			}
+		}
+		
 		
 		dispatchGroup.notify(queue: .main) {
 			//TODO: Posibly refactor to adding groups to array directly after network call
@@ -72,6 +85,7 @@ class AppsPageVC: BaseListVC {
 				self.appGroups.append(group)
 			}
 			
+			// rerenders all collection view methods
 			self.collectionView.reloadData()
 		}
 	}
@@ -93,8 +107,11 @@ extension AppsPageVC {
 		return cell
 	}
 	
+	
 	override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AppsPageHeader.reuseId, for: indexPath) as! AppsPageHeader
+		header.appsHeaderVC.apps = socialApps
+		header.appsHeaderVC.collectionView.reloadData() // is this a best way?
 		return header
 	}
 	

@@ -6,12 +6,11 @@
 //
 
 import UIKit
-
-
-
+import SDWebImage
 
 class AppsHeaderVC: BaseListVC {
 	
+	var apps = [SocialApp]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,13 +25,17 @@ class AppsHeaderVC: BaseListVC {
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 3
+		return apps.count
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
+		let app = apps[indexPath.item]
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsHeaderCell.reuseId, for: indexPath) as! AppsHeaderCell
+		cell.companyLabel.text = app.name
+		cell.titleLabel.text = app.tagline
+		cell.imageView.sd_setImage(with: URL(string: app.imageUrl))
 		return cell
 	}
 }
@@ -46,6 +49,6 @@ extension AppsHeaderVC: UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 		
-		return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+		return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
 	}
 }
