@@ -16,6 +16,11 @@ class AppsHorizontalVC: BaseListVC {
 	
 	var appGroup: AppGroup?
 	
+	// example of using a closure to pass data instead of initiating details vc from this vc
+	// what are the down side of initiating details directly from here
+	// can init nav controller by tapping cell
+	var didSelectCellHander: ((FeedResult) -> ())?
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,6 +29,15 @@ class AppsHorizontalVC: BaseListVC {
 		
 		if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
 			layout.scrollDirection = .horizontal
+		}
+	}
+}
+
+
+extension AppsHorizontalVC {
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		if let app = appGroup?.feed.results[indexPath.item] {
+			didSelectCellHander?(app)
 		}
 	}
 }

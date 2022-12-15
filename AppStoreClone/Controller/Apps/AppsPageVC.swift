@@ -116,6 +116,12 @@ extension AppsPageVC {
 		let appGroup = appGroups[indexPath.item]
 		cell.titleLabel.text = appGroup.feed.title
 		cell.horizontalController.appGroup = appGroup
+		cell.horizontalController.didSelectCellHander = { [weak self] app in
+			guard let self = self else { return }
+			let detailsVC = AppDetailsVC()
+			detailsVC.navigationItem.title = app.name
+			self.navigationController?.pushViewController(detailsVC, animated: true)
+		}
 		return cell
 	}
 	
