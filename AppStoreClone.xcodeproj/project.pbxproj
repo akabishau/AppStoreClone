@@ -97,7 +97,7 @@
 		5B8EC968293E6DF100B47FBB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5B8EC9BD294BC08400B47FBB /* AppDetailCell.swift */,
+				5BDE35F8294C070E00BCEFE2 /* Details */,
 				5B8EC97C2942A9CF00B47FBB /* Apps */,
 				5B8EC97F2942AA2600B47FBB /* Search */,
 			);
@@ -203,6 +203,14 @@
 				5B8EC964293BC90000B47FBB /* Support */,
 			);
 			path = AppStoreClone;
+			sourceTree = "<group>";
+		};
+		5BDE35F8294C070E00BCEFE2 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				5B8EC9BD294BC08400B47FBB /* AppDetailCell.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

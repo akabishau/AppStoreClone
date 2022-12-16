@@ -11,22 +11,26 @@ class AppDetailsVC: BaseListVC {
 	
 	var appId: String? {
 		didSet {
-			print("my id", appId!)
-			
 			let urlString = "https://itunes.apple.com/lookup?id=\(appId!)"
-			print(urlString)
 			Service.shared.fetchGenericJSONData(urlString: urlString) { (result: SearchResult?, error) in
 				if let error = error {
 					print("error fetching app details", error)
 					return
 				}
 				
-				if let app = result?.results.first {
-					print(app.releaseNotes)
+				if let appDetails = result?.results.first {
+					self.appDetails = appDetails
+				}
+				DispatchQueue.main.async {
+					self.collectionView.reloadData()
 				}
 			}
 		}
 	}
+	
+	
+	var appDetails: Result?
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -48,14 +52,26 @@ extension AppDetailsVC {
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppDetailCell.reuseId, for: indexPath) as! AppDetailCell
-		
+		cell.appDetails = appDetails
 		return cell
 	}
 }
 
 
 extension AppDetailsVC: UICollectionViewDelegateFlowLayout {
+	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return .init(width: view.frame.width, height: 300)
+		
+		var cellHeight: CGFloat
+		// cell auto-size calculation
+		let dummyCell = AppDetailCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1000)) // 1000 is arbitrary number
+		dummyCell.appDetails = appDetails
+		dummyCell.layoutIfNeeded()
+		
+		let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: 1000))
+//		print("Auto-sizing: \(estimatedSize)")
+		cellHeight = estimatedSize.height
+		
+		return .init(width: view.frame.width, height: cellHeight)
 	}
 }
