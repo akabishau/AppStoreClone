@@ -120,6 +120,7 @@ extension AppsPageVC {
 			guard let self = self else { return }
 			let detailsVC = AppDetailsVC()
 			detailsVC.navigationItem.title = app.name
+			detailsVC.appId = app.id
 			self.navigationController?.pushViewController(detailsVC, animated: true)
 		}
 		return cell
