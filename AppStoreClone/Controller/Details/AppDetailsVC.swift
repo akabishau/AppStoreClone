@@ -40,6 +40,7 @@ class AppDetailsVC: BaseListVC {
 		collectionView.backgroundColor = .systemBackground
 		collectionView.register(AppDetailCell.self, forCellWithReuseIdentifier: AppDetailCell.reuseId)
 		collectionView.register(Previewcell.self, forCellWithReuseIdentifier: Previewcell.reuseId)
+		collectionView.register(ReviewsCell.self, forCellWithReuseIdentifier: ReviewsCell.reuseId)
 	}
 }
 
@@ -47,7 +48,7 @@ class AppDetailsVC: BaseListVC {
 extension AppDetailsVC {
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 2
+		return 3
 	}
 	
 	
@@ -60,6 +61,10 @@ extension AppDetailsVC {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Previewcell.reuseId, for: indexPath) as! Previewcell
 			cell.previewVC.appDetails = appDetails
 			return cell
+		} else if indexPath.item == 2 {
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewsCell.reuseId, for: indexPath)
+			cell.backgroundColor = .systemGray
+			return cell
 		} else {
 			return UICollectionViewCell()
 		}
@@ -71,8 +76,9 @@ extension AppDetailsVC: UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
+		var height: CGFloat = 280
+		
 		if indexPath.item == 0 {
-			var cellHeight: CGFloat
 			// cell auto-size calculation
 			let dummyCell = AppDetailCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1000)) // 1000 is arbitrary number
 			dummyCell.appDetails = appDetails
@@ -80,13 +86,13 @@ extension AppDetailsVC: UICollectionViewDelegateFlowLayout {
 			
 			let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: 1000))
 			//		print("Auto-sizing: \(estimatedSize)")
-			cellHeight = estimatedSize.height
-			
-			return .init(width: view.frame.width, height: cellHeight)
+			height = estimatedSize.height
 		} else if indexPath.item == 1 {
-			return .init(width: view.frame.width, height: 400)
-		} else {
-			return .init(width: view.frame.width, height: 100)
+			height = 500
+		} else if indexPath.item == 2 {
+			height = 280
 		}
+		
+		return .init(width: view.frame.width, height: height)
 	}
 }
