@@ -41,4 +41,10 @@ extension ReviewsVC: UICollectionViewDelegateFlowLayout {
 		
 		return .init(width: view.frame.width - 48, height: view.frame.height)
 	}
+	
+	
+	// default spacing is 10,
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+		return 16
+	}
 }
