@@ -25,11 +25,28 @@ class AppDetailsVC: BaseListVC {
 					self.collectionView.reloadData()
 				}
 			}
+			
+			
+			let reviewUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId!)/sortby=mostrecent/json?l=en&cc=us"
+			Service.shared.fetchGenericJSONData(urlString: reviewUrl) { (reviews: ReviewResult?, error) in
+				
+				if let error = error {
+					print("failed to decode reviews: ", error)
+					return
+				}
+				
+				
+				self.reviews = reviews
+				DispatchQueue.main.async {
+					self.collectionView.reloadData()
+				}
+			}
 		}
 	}
 	
 	
 	var appDetails: Result?
+	var reviews: ReviewResult?
 	
 	
 	override func viewDidLoad() {
@@ -62,8 +79,9 @@ extension AppDetailsVC {
 			cell.previewVC.appDetails = appDetails
 			return cell
 		} else if indexPath.item == 2 {
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewRatingCell.reuseId, for: indexPath)
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewRatingCell.reuseId, for: indexPath) as! ReviewRatingCell
 			cell.backgroundColor = .systemGray
+			cell.reviewsVC.reviews = self.reviews
 			return cell
 		} else {
 			return UICollectionViewCell()

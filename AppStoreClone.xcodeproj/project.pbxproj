@@ -36,6 +36,7 @@
 		5BDE3600294EC5BF00BCEFE2 /* ReviewRatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE35FF294EC5BF00BCEFE2 /* ReviewRatingCell.swift */; };
 		5BDE3602294FC7AB00BCEFE2 /* ReviewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE3601294FC7AB00BCEFE2 /* ReviewsVC.swift */; };
 		5BDE36042951682300BCEFE2 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE36032951682300BCEFE2 /* ReviewCell.swift */; };
+		5BDE36062953604900BCEFE2 /* ReviewResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE36052953604900BCEFE2 /* ReviewResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		5BDE35FF294EC5BF00BCEFE2 /* ReviewRatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRatingCell.swift; sourceTree = "<group>"; };
 		5BDE3601294FC7AB00BCEFE2 /* ReviewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVC.swift; sourceTree = "<group>"; };
 		5BDE36032951682300BCEFE2 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		5BDE36052953604900BCEFE2 /* ReviewResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				5B8EC96F29413C7F00B47FBB /* SearchResult.swift */,
 				5B8EC9B4294832F600B47FBB /* AppGroup.swift */,
 				5B8EC9B62949672A00B47FBB /* SocialApp.swift */,
+				5BDE36052953604900BCEFE2 /* ReviewResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				5B8EC9792942A36B00B47FBB /* AppsPageVC.swift in Sources */,
 				5BBB10D32939255300E94B21 /* AppDelegate.swift in Sources */,
 				5B8EC97029413C7F00B47FBB /* SearchResult.swift in Sources */,
+				5BDE36062953604900BCEFE2 /* ReviewResult.swift in Sources */,
 				5BDE35FA294CE52D00BCEFE2 /* PreviewCell.swift in Sources */,
 				5B8EC9B329478B9500B47FBB /* AppsHeaderCell.swift in Sources */,
 				5B8EC9AD2944475700B47FBB /* AppRowCell.swift in Sources */,

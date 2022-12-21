@@ -9,6 +9,12 @@ import UIKit
 
 class ReviewsVC: BaseListVC {
 	
+	var reviews: ReviewResult? {
+		didSet {
+			collectionView.reloadData()
+		}
+	}
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -23,13 +29,18 @@ class ReviewsVC: BaseListVC {
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 6
+		return reviews?.feed.entry.count ?? 0
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
+		let review = reviews?.feed.entry[indexPath.item]
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.reuseId, for: indexPath) as! ReviewCell
+		cell.titleLabel.text = review?.title.label
+		cell.authorLabel.text = review?.author.name.label
+		cell.bodyLabel.text = review?.content.label
+		
 		return cell
 	}
 }
