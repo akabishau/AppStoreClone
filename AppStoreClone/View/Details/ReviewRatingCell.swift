@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ReviewsCell: UICollectionViewCell {
+class ReviewRatingCell: UICollectionViewCell {
 	
-	static let reuseId = String(describing: ReviewsCell.self)
+	static let reuseId = String(describing: ReviewRatingCell.self)
 	
 	let reviewsVC = ReviewsVC()
 	

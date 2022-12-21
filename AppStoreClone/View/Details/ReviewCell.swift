@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ReviewRowCell: UICollectionViewCell {
+class ReviewCell: UICollectionViewCell {
 	
-	static let reuseId = String(describing: ReviewRowCell.self)
+	static let reuseId = String(describing: ReviewCell.self)
 	
 	
 	override init(frame: CGRect) {

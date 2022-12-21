@@ -33,9 +33,9 @@
 		5BDE35FA294CE52D00BCEFE2 /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE35F9294CE52D00BCEFE2 /* PreviewCell.swift */; };
 		5BDE35FC294CEBC300BCEFE2 /* PreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE35FB294CEBC300BCEFE2 /* PreviewVC.swift */; };
 		5BDE35FE294CF85000BCEFE2 /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE35FD294CF85000BCEFE2 /* ScreenshotCell.swift */; };
-		5BDE3600294EC5BF00BCEFE2 /* ReviewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE35FF294EC5BF00BCEFE2 /* ReviewsCell.swift */; };
+		5BDE3600294EC5BF00BCEFE2 /* ReviewRatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE35FF294EC5BF00BCEFE2 /* ReviewRatingCell.swift */; };
 		5BDE3602294FC7AB00BCEFE2 /* ReviewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE3601294FC7AB00BCEFE2 /* ReviewsVC.swift */; };
-		5BDE36042951682300BCEFE2 /* ReviewRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE36032951682300BCEFE2 /* ReviewRowCell.swift */; };
+		5BDE36042951682300BCEFE2 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE36032951682300BCEFE2 /* ReviewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,9 +66,9 @@
 		5BDE35F9294CE52D00BCEFE2 /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
 		5BDE35FB294CEBC300BCEFE2 /* PreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewVC.swift; sourceTree = "<group>"; };
 		5BDE35FD294CF85000BCEFE2 /* ScreenshotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
-		5BDE35FF294EC5BF00BCEFE2 /* ReviewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsCell.swift; sourceTree = "<group>"; };
+		5BDE35FF294EC5BF00BCEFE2 /* ReviewRatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRatingCell.swift; sourceTree = "<group>"; };
 		5BDE3601294FC7AB00BCEFE2 /* ReviewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVC.swift; sourceTree = "<group>"; };
-		5BDE36032951682300BCEFE2 /* ReviewRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRowCell.swift; sourceTree = "<group>"; };
+		5BDE36032951682300BCEFE2 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,8 +225,8 @@
 				5B8EC9BD294BC08400B47FBB /* AppDetailCell.swift */,
 				5BDE35F9294CE52D00BCEFE2 /* PreviewCell.swift */,
 				5BDE35FD294CF85000BCEFE2 /* ScreenshotCell.swift */,
-				5BDE35FF294EC5BF00BCEFE2 /* ReviewsCell.swift */,
-				5BDE36032951682300BCEFE2 /* ReviewRowCell.swift */,
+				5BDE35FF294EC5BF00BCEFE2 /* ReviewRatingCell.swift */,
+				5BDE36032951682300BCEFE2 /* ReviewCell.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 				5BDE3602294FC7AB00BCEFE2 /* ReviewsVC.swift in Sources */,
 				5B8EC9AF29477B6D00B47FBB /* AppsHeaderVC.swift in Sources */,
 				5B8EC9BE294BC08400B47FBB /* AppDetailCell.swift in Sources */,
-				5BDE3600294EC5BF00BCEFE2 /* ReviewsCell.swift in Sources */,
+				5BDE3600294EC5BF00BCEFE2 /* ReviewRatingCell.swift in Sources */,
 				5B8EC9B5294832F600B47FBB /* AppGroup.swift in Sources */,
 				5B8EC9792942A36B00B47FBB /* AppsPageVC.swift in Sources */,
 				5BBB10D32939255300E94B21 /* AppDelegate.swift in Sources */,
@@ -330,7 +330,7 @@
 				5B8EC9B329478B9500B47FBB /* AppsHeaderCell.swift in Sources */,
 				5B8EC9AD2944475700B47FBB /* AppRowCell.swift in Sources */,
 				5B8EC96D29403E8A00B47FBB /* UIView+Layout.swift in Sources */,
-				5BDE36042951682300BCEFE2 /* ReviewRowCell.swift in Sources */,
+				5BDE36042951682300BCEFE2 /* ReviewCell.swift in Sources */,
 				5B8EC9B72949672A00B47FBB /* SocialApp.swift in Sources */,
 				5B8EC97E2942A9E200B47FBB /* AppsGroupCell.swift in Sources */,
 			);

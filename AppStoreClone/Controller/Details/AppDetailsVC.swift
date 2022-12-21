@@ -40,7 +40,7 @@ class AppDetailsVC: BaseListVC {
 		collectionView.backgroundColor = .systemBackground
 		collectionView.register(AppDetailCell.self, forCellWithReuseIdentifier: AppDetailCell.reuseId)
 		collectionView.register(Previewcell.self, forCellWithReuseIdentifier: Previewcell.reuseId)
-		collectionView.register(ReviewsCell.self, forCellWithReuseIdentifier: ReviewsCell.reuseId)
+		collectionView.register(ReviewRatingCell.self, forCellWithReuseIdentifier: ReviewRatingCell.reuseId)
 	}
 }
 
@@ -62,7 +62,7 @@ extension AppDetailsVC {
 			cell.previewVC.appDetails = appDetails
 			return cell
 		} else if indexPath.item == 2 {
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewsCell.reuseId, for: indexPath)
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewRatingCell.reuseId, for: indexPath)
 			cell.backgroundColor = .systemGray
 			return cell
 		} else {
