@@ -80,7 +80,6 @@ extension AppDetailsVC {
 			return cell
 		} else if indexPath.item == 2 {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewRatingCell.reuseId, for: indexPath) as! ReviewRatingCell
-			cell.backgroundColor = .systemGray
 			cell.reviewsVC.reviews = self.reviews
 			return cell
 		} else {

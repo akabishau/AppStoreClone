@@ -32,7 +32,7 @@ class Previewcell: UICollectionViewCell {
 		let containerView = UIView()
 		containerView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(containerView)
-		containerView.backgroundColor = .systemGray
+//		containerView.backgroundColor = .systemGray
 		
 		containerView.addSubview(previewVC.view)
 		
