@@ -14,7 +14,7 @@ class ReviewCell: UICollectionViewCell {
 
 	let titleLabel = UILabel(text: "Review Title", font: .boldSystemFont(ofSize: 18))
 	let authorLabel = UILabel(text: "Author", font: .systemFont(ofSize: 16))
-	let bodyLabel = UILabel(text: "Review body\nReview body\nReview body", font: .systemFont(ofSize: 14), numberOfLines: 3)
+	let bodyLabel = UILabel(text: "Review body\nReview body\nReview body", font: .systemFont(ofSize: 16), numberOfLines: 5)
 	
 	let starsStackView: UIStackView = {
 		
@@ -66,7 +66,6 @@ class ReviewCell: UICollectionViewCell {
 		
 		
 		addSubview(stackView)
-//		stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
 		stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 20, left: 20, bottom: 20, right: 20))
 	}
 }
