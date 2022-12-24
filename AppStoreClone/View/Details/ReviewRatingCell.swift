@@ -25,12 +25,30 @@ class ReviewRatingCell: UICollectionViewCell {
 	
 	
 	private func setUpViews() {
-		
+		reviewsRatingLabel.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(reviewsRatingLabel)
-		addSubview(reviewsVC.view)
 		
-		reviewsRatingLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 20, left: 20, bottom: 0, right: 20))
+		// for some reason layout through extension method didn't work properly - used this way
+		let containerView = UIView()
+		containerView.translatesAutoresizingMaskIntoConstraints = false
+		addSubview(containerView)
 		
-		reviewsVC.view.anchor(top: reviewsRatingLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 20, left: 0, bottom: 0, right: 0))
+		containerView.addSubview(reviewsVC.view)
+		reviewsVC.view.fillSuperview()
+				
+		NSLayoutConstraint.activate([
+			reviewsRatingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+			reviewsRatingLabel.topAnchor.constraint(equalTo: topAnchor),
+			reviewsRatingLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+			reviewsRatingLabel.heightAnchor.constraint(equalToConstant: 30),
+			
+			containerView.topAnchor.constraint(equalTo: reviewsRatingLabel.bottomAnchor, constant: 16),
+			containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+			containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+			containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
+		
+		])
+		
+		
 	}
 }
