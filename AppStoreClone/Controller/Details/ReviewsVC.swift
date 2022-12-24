@@ -35,11 +35,18 @@ class ReviewsVC: BaseListVC {
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
-		let review = reviews?.feed.entry[indexPath.item]
+		guard let review = reviews?.feed.entry[indexPath.item] else { return UICollectionViewCell() }
+		
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.reuseId, for: indexPath) as! ReviewCell
-		cell.titleLabel.text = review?.title.label
-		cell.authorLabel.text = review?.author.name.label
-		cell.bodyLabel.text = review?.content.label
+		cell.titleLabel.text = review.title.label
+		cell.authorLabel.text = review.author.name.label
+		cell.bodyLabel.text = review.content.label
+		
+		for (index, view) in cell.starsStackView.arrangedSubviews.enumerated() {
+			if let rating = Int(review.rating.label) {
+				view.alpha = index >= rating ? 0 : 1
+			}
+		}
 		
 		return cell
 	}

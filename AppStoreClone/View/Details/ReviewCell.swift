@@ -14,8 +14,24 @@ class ReviewCell: UICollectionViewCell {
 
 	let titleLabel = UILabel(text: "Review Title", font: .boldSystemFont(ofSize: 18))
 	let authorLabel = UILabel(text: "Author", font: .systemFont(ofSize: 16))
-	let starsLabel = UILabel(text: "Stars", font: .systemFont(ofSize: 14))
-	let bodyLabel = UILabel(text: "Review body\nReview body\nReview body", font: .systemFont(ofSize: 14), numberOfLines: 0)
+	let bodyLabel = UILabel(text: "Review body\nReview body\nReview body", font: .systemFont(ofSize: 14), numberOfLines: 3)
+	
+	let starsStackView: UIStackView = {
+		
+		var starViews = [UIView]()
+		(0..<5).forEach { _ in
+			let imageView = UIImageView(image: UIImage(systemName: "star"))
+			imageView.constrainWidth(constant: 24)
+			imageView.constrainHeight(constant: 24)
+			starViews.append(imageView)
+		}
+		
+		starViews.append(UIView()) // to make this view to fill all the space to left side
+		
+		let stackView = UIStackView(arrangedSubviews: starViews)
+		stackView.axis = .horizontal
+		return stackView
+	}()
 
 
 
@@ -39,7 +55,7 @@ class ReviewCell: UICollectionViewCell {
 		
 		let stackView = UIStackView(arrangedSubviews: [
 			horizontalStackView,
-			starsLabel,
+			starsStackView,
 			bodyLabel
 		])
 		stackView.axis = .vertical
@@ -50,6 +66,7 @@ class ReviewCell: UICollectionViewCell {
 		
 		
 		addSubview(stackView)
-		stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
+//		stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
+		stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 20, left: 20, bottom: 20, right: 20))
 	}
 }
