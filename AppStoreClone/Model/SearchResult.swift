@@ -21,8 +21,8 @@ struct Result: Decodable {
 	let averageUserRating: Double?
 	var screenshotUrls: [String]
 	let artworkUrl100: String
-	var formattedPrice: String
+	var formattedPrice: String?
 	var description: String
-	var releaseNotes: String
+	var releaseNotes: String?
 	var artistName: String
 }

@@ -9,55 +9,66 @@ import UIKit
 
 class AppDetailsVC: BaseListVC {
 	
-	var appId: String? {
-		didSet {
-			let urlString = "https://itunes.apple.com/lookup?id=\(appId!)"
-			Service.shared.fetchGenericJSONData(urlString: urlString) { (result: SearchResult?, error) in
-				if let error = error {
-					print("error fetching app details", error)
-					return
-				}
-				
-				if let appDetails = result?.results.first {
-					self.appDetails = appDetails
-				}
-				DispatchQueue.main.async {
-					self.collectionView.reloadData()
-				}
-			}
-			
-			
-			let reviewUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId!)/sortby=mostrecent/json?l=en&cc=us"
-			Service.shared.fetchGenericJSONData(urlString: reviewUrl) { (reviews: ReviewResult?, error) in
-				
-				if let error = error {
-					print("failed to decode reviews: ", error)
-					return
-				}
-				
-				
-				self.reviews = reviews
-				DispatchQueue.main.async {
-					self.collectionView.reloadData()
-				}
-			}
-		}
+	private var appDetails: Result?
+	private var reviews: ReviewResult?
+	
+	// dependency injection setup
+	private let appId: String
+
+	init(appId: String) {
+		self.appId = appId
+		super.init()
 	}
 	
 	
-	var appDetails: Result?
-	var reviews: ReviewResult?
+	required init?(coder: NSCoder) { fatalError() }
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-//		navigationItem.largeTitleDisplayMode = .never
+		navigationItem.largeTitleDisplayMode = .never
 		
 		collectionView.backgroundColor = .systemBackground
 		collectionView.register(AppDetailCell.self, forCellWithReuseIdentifier: AppDetailCell.reuseId)
 		collectionView.register(Previewcell.self, forCellWithReuseIdentifier: Previewcell.reuseId)
 		collectionView.register(ReviewRatingCell.self, forCellWithReuseIdentifier: ReviewRatingCell.reuseId)
+		
+		fetchData()
+	}
+	
+	
+	private func fetchData() {
+		let urlString = "https://itunes.apple.com/lookup?id=\(appId)"
+		Service.shared.fetchGenericJSONData(urlString: urlString) { (result: SearchResult?, error) in
+			if let error = error {
+				print("error fetching app details", error)
+				return
+			}
+			
+			if let appDetails = result?.results.first {
+				self.appDetails = appDetails
+			}
+			DispatchQueue.main.async {
+				self.collectionView.reloadData()
+			}
+		}
+		
+		
+		let reviewUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId)/sortby=mostrecent/json?l=en&cc=us"
+		Service.shared.fetchGenericJSONData(urlString: reviewUrl) { (reviews: ReviewResult?, error) in
+			
+			if let error = error {
+				print("failed to decode reviews: ", error)
+				return
+			}
+			
+			
+			self.reviews = reviews
+			DispatchQueue.main.async {
+				self.collectionView.reloadData()
+			}
+		}
 	}
 }
 

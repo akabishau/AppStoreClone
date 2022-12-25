@@ -41,19 +41,6 @@ class AppSearchVC: BaseListVC {
 	}
 	
 	
-	fileprivate func fetchITunesApps() {
-		Service.shared.fetchApps(searchTerm: "twitter") { results, error in
-			if let error = error {
-				print("failed to fetch apps:", error)
-				return
-			}
-			
-			self.appResults = results
-			DispatchQueue.main.async {
-				self.collectionView.reloadData()
-			}
-		}
-	}
 	
 	
 	fileprivate func setupSearchBar() {
@@ -76,6 +63,13 @@ class AppSearchVC: BaseListVC {
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		enterSearchTermLabel.isHidden = !appResults.isEmpty
 		return appResults.count
+	}
+	
+	
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		
+		let appDetailsVC = AppDetailsVC(appId: String(appResults[indexPath.item].trackId))
+		navigationController?.pushViewController(appDetailsVC, animated: true)
 	}
 }
 

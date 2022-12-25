@@ -118,9 +118,7 @@ extension AppsPageVC {
 		cell.horizontalController.appGroup = appGroup
 		cell.horizontalController.didSelectCellHander = { [weak self] app in
 			guard let self = self else { return }
-			let detailsVC = AppDetailsVC()
-			detailsVC.navigationItem.title = app.name
-			detailsVC.appId = app.id
+			let detailsVC = AppDetailsVC(appId: app.id)
 			self.navigationController?.pushViewController(detailsVC, animated: true)
 		}
 		return cell
