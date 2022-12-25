@@ -36,6 +36,39 @@ class TodayVC: BaseListVC {
 	
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		print("animate cell to the full screen")
+		
+		// 1 get cell
+		guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+		
+		// 2 create a view with tp gesture
+		let redView = UIView()
+		redView.backgroundColor = .systemRed
+		redView.layer.cornerRadius = 16
+		redView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView(gesture:))))
+		
+		// 3 get the absolute coordinates and assign them to view
+		guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
+		self.startingFrame = startingFrame
+		redView.frame = startingFrame
+		view.addSubview(redView)
+		
+		// 4 animate to the final position
+		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
+			redView.frame = self.view.frame
+		}
+		
+	}
+	
+	var startingFrame: CGRect?
+	
+	
+	@objc private func handleRemoveRedView(gesture: UITapGestureRecognizer) {
+		
+		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
+			gesture.view?.frame = self.startingFrame ?? .zero
+		} completion: { _ in
+			gesture.view?.removeFromSuperview()
+		}
 	}
 }
 
