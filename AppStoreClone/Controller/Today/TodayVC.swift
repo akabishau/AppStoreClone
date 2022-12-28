@@ -55,6 +55,8 @@ class TodayVC: BaseListVC {
 		// 4 animate to the final position
 		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
 			redView.frame = self.view.frame
+			
+			self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height
 		}
 		
 	}
@@ -66,6 +68,10 @@ class TodayVC: BaseListVC {
 		
 		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
 			gesture.view?.frame = self.startingFrame ?? .zero
+			
+			if var tabBarFrame = self.tabBarController?.tabBar.frame {
+				self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height - tabBarFrame.height
+			}
 		} completion: { _ in
 			gesture.view?.removeFromSuperview()
 		}
